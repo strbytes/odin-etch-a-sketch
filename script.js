@@ -1,11 +1,12 @@
 let sketch = document.querySelector("#sketch");
 let buttons = document.querySelectorAll(".button")
 let clearButton = document.querySelector("#clear")
+let gridSizeSelector = document.querySelector("#grid-size")
+let gridSizeLabel = document.querySelector("label")
 
-// for (button of [...buttons]) {
-//   button.addEventListener()
-// }
 clearButton.addEventListener("click", clearGrid);
+gridSizeSelector.addEventListener("change", gridSizeChange);
+gridSizeSelector.addEventListener("input", gridSizeLabelChange);
 
 function createDiv() {
   let div = document.createElement("div");
@@ -24,6 +25,9 @@ function createRow(len) {
 }
 
 function createGrid(len) {
+  for (row of [...sketch.childNodes]) {
+    sketch.removeChild(row);
+  }
   for (let i = 0; i < len; i++) {
     sketch.appendChild(createRow(len));
   }
@@ -41,4 +45,14 @@ function clearGrid() {
   }
 }
 
-createGrid(16);
+function gridSizeChange(event) {
+  size = event.target.value
+  createGrid(size);
+}
+
+function gridSizeLabelChange(event) {
+  size = event.target.value
+  gridSizeLabel.textContent = `Grid size: ${size} x ${size}`;
+}
+
+createGrid(gridSizeSelector.value);

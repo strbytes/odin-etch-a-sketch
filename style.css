@@ -1,6 +1,7 @@
 html {
   background-color: #fee;
   font-family: Arial, sans-serif;
+  color: #002424;
 }
 
 body {
@@ -30,6 +31,7 @@ main {
   background-color: #fcc;
   flex: 1;
   display: flex;
+  justify-content: space-around;
   margin: 0 1vw;
   border-radius: 1%;
 }
@@ -50,6 +52,7 @@ main {
   align-items: center;
   background-color: #fbb;
   border-radius: 2%;
+  font-weight: bold;
 }
 
 .control-flex {
@@ -65,6 +68,12 @@ main {
 
 .button:hover {
   background-color: #f99;
+}
+
+#grid-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #container {
