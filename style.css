@@ -1,7 +1,7 @@
 html {
   background-color: #fee;
   font-family: Arial, sans-serif;
-  color: #002424;
+  color: #001818;
 }
 
 body {
@@ -49,7 +49,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
   background-color: #fbb;
   border-radius: 2%;
   font-weight: bold;
@@ -60,20 +60,27 @@ main {
   min-height: 1px;
 }
 
-.button {
-  background-color: #faa;
+.button, .button:hover, .button-click {
   padding: 1vh;
   border-radius: 5%;
+}
+
+.button {
+  background-color: #faa;
 }
 
 .button:hover {
   background-color: #f99;
 }
 
+.button-click {
+  background-color: #f88;
+}
+
 #grid-slider {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #container {

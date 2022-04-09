@@ -8,6 +8,18 @@ clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
 gridSizeSelector.addEventListener("input", gridSizeLabelChange);
 
+for (let button of [...buttons]) {
+  if (button.id = "grid-slider") continue;
+  button.addEventListener("mousedown", (e) => {
+    e.target.classList.remove("button");
+    e.target.classList.add("button-click");
+  });
+  button.addEventListener("mouseup", (e) => {
+    e.target.classList.remove("button-click");
+    e.target.classList.add("button");
+  });
+}
+
 function createDiv() {
   let div = document.createElement("div");
   div.setAttribute("class", "square");
