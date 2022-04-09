@@ -14,7 +14,7 @@ colorPicker.addEventListener("change", (event) => {
   color = event.target.value;
   console.log(color);
 });
-solidButton.addEventListener("click", () => (random = false));
+solidButton.addEventListener("click", () => {random = false; color = colorPicker.value;});
 randomButton.addEventListener("click", () => (random = true));
 clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
