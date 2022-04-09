@@ -13,17 +13,32 @@
     </header>
     <main>
       <div id="control-div">
-        <div class="control-flex">something should go here</div>
+        <div class="control-flex"></div>
+        <div id="color-div">
+          <input
+            type="color"
+            id="color-picker"
+            name="color-picker"
+            value="#006969"
+          /><label for="color-picker">Color selector</label>
+        </div>
         <ul id="controls">
-          <li><div class="button">Button 2</div></li>
-          <li><div class="button">Button 3</div></li>
+          <li><div id="solid-color" class="button">Solid color</div></li>
+          <li><div id="random-color" class="button">Random color</div></li>
           <li><div class="button">Button 4</div></li>
           <li><div id="clear" class="button">Clear</div></li>
-          <li><div id="grid-slider" class="button">
-              <input type="range" id="grid-size" name="grid-size"
-                                           min="4" max="64" value="24" />
-              <label for="grid-size">Grid size: 24 x 24</label>
-          </div></li>
+          <li>
+            <div id="grid-slider" class="button">
+              <input
+                type="range"
+                id="grid-size"
+                name="grid-size"
+                min="4"
+                max="64"
+              />
+              <label id="slider-label" for="grid-size">Grid size: 24 x 24</label>
+            </div>
+          </li>
         </ul>
         <div class="control-flex"></div>
       </div>
@@ -33,7 +48,7 @@
     </main>
     <footer>
       <div></div>
-      <h5>footer</h5>
+      <h5>strbytes 2022</h5>
     </footer>
   </body>
 </html>
