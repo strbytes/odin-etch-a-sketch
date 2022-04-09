@@ -1,5 +1,5 @@
 let sketch = document.querySelector("#sketch");
-let colorPicker = document.querySelector("#color-picker")
+let colorPicker = document.querySelector("#color-picker");
 let buttons = document.querySelectorAll(".button");
 let solidButton = document.querySelector("#solid-color");
 let randomButton = document.querySelector("#random-color");
@@ -12,9 +12,16 @@ let color = colorPicker.value;
 
 colorPicker.addEventListener("change", (event) => {
   color = event.target.value;
-  console.log(color);
 });
-solidButton.addEventListener("click", () => {random = false; color = colorPicker.value;});
+solidButton.addEventListener("click", () => {
+  random = false;
+  color = colorPicker.value;
+});
+
+solidButton.addEventListener("click", () => {
+  random = false;
+  color = colorPicker.value;
+});
 randomButton.addEventListener("click", () => (random = true));
 clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
@@ -23,7 +30,7 @@ gridSizeSelector.addEventListener("input", gridSizeLabelChange);
 for (let button of [...buttons]) {
   if (button.id === "grid-slider") continue;
   button.addEventListener("mousedown", (e) => {
-    e.target.classList.remove("button")
+    e.target.classList.remove("button");
     e.target.classList.add("button-click");
   });
   button.addEventListener("mouseup", (e) => {

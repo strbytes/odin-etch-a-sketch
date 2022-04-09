@@ -1,7 +1,8 @@
 html {
   background-color: #fee;
   font-family: Arial, sans-serif;
-  color: #001818;
+  color: #033;
+  /* color: #001818; */
 }
 
 body {
@@ -21,7 +22,7 @@ header {
 }
 
 header h1 {
-  color: #006969;
+  color: #055;
   margin: 0.5vh;
   background-color: #fdd;
   padding: 0.5vh 0.5vw;
