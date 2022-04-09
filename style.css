@@ -20,20 +20,22 @@ header {
 }
 
 header h1 {
-  margin: 0;
+  margin: .5vh;
+  background-color: #fdd;
+  padding: .5vh .5vw;
+  border-radius: 5%;
 }
 
 main {
   background-color: #fcc;
   flex: 1;
   display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
   margin: 0 1vw;
+  border-radius: 1%;
 }
 
 #control-div {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,6 +49,7 @@ main {
   justify-content: space-around;
   align-items: center;
   background-color: #fbb;
+  border-radius: 2%;
 }
 
 .control-flex {
@@ -56,6 +59,8 @@ main {
 
 .button {
   background-color: #faa;
+  padding: 1vh;
+  border-radius: 5%;
 }
 
 .button:hover {
@@ -67,17 +72,20 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1vh 1vw;
+  padding: 2vh 2vw;
 }
 
 #sketch {
   aspect-ratio: 1;
-  background-color: #eee;
+  background-color: #fbb;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 1vh;
+  border-radius: 1%;
+  margin: 1vh;
 }
 
 .row {
