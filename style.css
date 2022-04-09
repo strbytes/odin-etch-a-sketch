@@ -19,6 +19,10 @@ header {
   align-items: center;
 }
 
+header h1 {
+  margin: 0;
+}
+
 main {
   background-color: #fcc;
   flex: 1;
@@ -37,13 +41,21 @@ main {
 }
 
 #controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   background-color: #fbb;
 }
 
 .control-flex {
   flex: 1;
-  width: 100%;
   min-height: 1px;
+}
+
+.button {
+  background-color: #faa;
 }
 
 #container {
@@ -64,4 +76,13 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+footer h5 {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 1vw;
 }
