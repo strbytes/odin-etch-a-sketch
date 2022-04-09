@@ -1,4 +1,11 @@
 let sketch = document.querySelector("#sketch");
+let buttons = document.querySelectorAll(".button")
+let clearButton = document.querySelector("#clear")
+
+// for (button of [...buttons]) {
+//   button.addEventListener()
+// }
+clearButton.addEventListener("click", clearGrid);
 
 function createDiv() {
   let div = document.createElement("div");
@@ -24,6 +31,14 @@ function createGrid(len) {
 
 function onMouseOver(event) {
   event.target.style.backgroundColor = "black";
+}
+
+function clearGrid() {
+  for (row of [...sketch.childNodes]) {
+    for (square of [...row.childNodes]) {
+      square.style.backgroundColor = "white";
+    }
+  }
 }
 
 createGrid(16);

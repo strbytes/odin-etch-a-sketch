@@ -58,6 +58,10 @@ main {
   background-color: #faa;
 }
 
+.button:hover {
+  background-color: #f99;
+}
+
 #container {
   flex: 5;
   display: flex;
