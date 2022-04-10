@@ -130,14 +130,22 @@ function colorButtonToggle() {
   // Check the state of random and lightDark to decide which button to
   // highlight
   if (lightDark) {
-    solidButton.children[0].classList.remove("option-select");
-    randomButton.children[0].classList.remove("option-select");
+    if (solidButton.childNodes[0].classList) {
+      solidButton.childNodes[0].classList.remove("option-select");
+    }
+    if (randomButton.childNodes[0].classList) {
+      randomButton.childNodes[0].classList.remove("option-select");
+    }
   } else if (random) {
-    solidButton.children[0].classList.remove("option-select");
-    randomButton.children[0].classList.add("option-select");
+    if (solidButton.childNodes[0].classList) {
+      solidButton.childNodes[0].classList.remove("option-select");
+    }
+    randomButton.childNodes[0].classList.add("option-select");
   } else {
-    solidButton.children[0].classList.add("option-select");
-    randomButton.children[0].classList.remove("option-select");
+    solidButton.childNodes[0].classList.add("option-select");
+    if (randomButton.childNodes[0].classList) {
+      randomButton.childNodes[0].classList.remove("option-select");
+    }
   }
 }
 
@@ -192,7 +200,7 @@ function lightDarkColor(divColor, amount) {
 function clearGrid() {
   for (row of [...sketch.childNodes]) {
     for (square of [...row.childNodes]) {
-      square.style.backgroundColor = "";
+      square.style.backgroundColor = "white";
     }
   }
   // Turn off lighten/darken feature when grid is cleared (does nothing on
