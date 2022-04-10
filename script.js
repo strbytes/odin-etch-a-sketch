@@ -13,15 +13,31 @@ const gridSizeLabel = document.querySelector("#slider-label");
 let random = false;
 let color = colorPicker.value;
 let lightDark = 0;
+let lightDarkForceOff = false;
 
 colorPicker.addEventListener("change", (event) => {
+  // Use browser color picker to set the grid draw color
+  // Unset any other draw style settings
   color = event.target.value;
+  random = false;
+  lightDarkForceOff = true;
+  lightDarkToggle();
 });
 solidButton.addEventListener("click", () => {
+  // Use the color from the picker to set the grid draw color
+  // Unset any other draw style settings
   random = false;
   color = colorPicker.value;
+  lightDarkForceOff = true;
+  lightDarkToggle();
 });
-randomButton.addEventListener("click", () => (random = true));
+randomButton.addEventListener("click", () => {
+  // Use a random color for every square in the grid when drawing
+  // Unset any other draw style settings
+  random = true;
+  lightDarkForceOff = true;
+  lightDarkToggle();
+});
 lightDarkButton.addEventListener("click", lightDarkToggle);
 clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
@@ -34,6 +50,8 @@ for (let button of [...buttons]) {
 }
 
 function createDiv() {
+  // Create a single div, add it to the grid style, and add the event listener
+  // for drawing
   let div = document.createElement("div");
   div.setAttribute("class", "square");
   div.addEventListener("pointerover", onMouseOver);
@@ -41,6 +59,7 @@ function createDiv() {
 }
 
 function createRow(len) {
+  // Create a single row of divs for the grid and set style
   let row = document.createElement("div");
   row.setAttribute("class", "row");
   for (let i = 0; i < len; i++) {
@@ -50,6 +69,8 @@ function createRow(len) {
 }
 
 function createGrid(len) {
+  // Create a full grid out of rows of divs
+  // Uses the same len for height and width so always makes a square
   for (row of [...sketch.childNodes]) {
     sketch.removeChild(row);
   }
@@ -60,9 +81,10 @@ function createGrid(len) {
 
 function onMouseOver(event) {
   // Change color of divs in grid as the mouse passes over them
-  // The color change depends on global vars color and lightDark
+  // The effect applied depends on global vars color, random, and lightDark
   if (lightDark) {
     if (!event.target.style.backgroundColor) {
+      // Skip squares that haven't been drawn on
       return;
     }
     divColor = parseColor(event.target.style.backgroundColor);
@@ -79,6 +101,7 @@ function onMouseOver(event) {
 }
 
 function buttonClick(event) {
+  // Responsive style change for buttons
   if (event.target.className === "") {
     // swap target on .button, not the spans on lighten/darken
     event.target.parentNode.classList.remove("button");
@@ -110,6 +133,19 @@ function clearGrid() {
 
 function lightDarkToggle() {
   // Toggle the button indicators on lightDark
+  if (lightDarkForceOff) {
+    // Couldn't pass a bool directly to the function simply, so used a global
+    // var as a flag that tells a call to this function to remove the effects
+    // and button styles
+    lightenText.classList.remove("light-dark");
+    darkenText.classList.remove("light-dark");
+    lightDark = 0;
+    lightDarkForceOff = false;
+    return;
+  }
+  // lightDark cycles through states 0, 1, 2 when this function is called,
+  // which tells the rest of this function and onMouseOver which effect is
+  // active. 0 = off, 1 = lighten, 2 = darken
   lightDark += 1;
   if (lightDark % 3 === 1) {
     lightenText.classList.add("light-dark");
