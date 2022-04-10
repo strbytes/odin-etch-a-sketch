@@ -1,14 +1,18 @@
-let sketch = document.querySelector("#sketch");
-let colorPicker = document.querySelector("#color-picker");
-let buttons = document.querySelectorAll(".button");
-let solidButton = document.querySelector("#solid-color");
-let randomButton = document.querySelector("#random-color");
-let clearButton = document.querySelector("#clear");
-let gridSizeSelector = document.querySelector("#grid-size");
-let gridSizeLabel = document.querySelector("#slider-label");
+const sketch = document.querySelector("#sketch");
+const colorPicker = document.querySelector("#color-picker");
+const buttons = document.querySelectorAll(".button");
+const solidButton = document.querySelector("#solid-color");
+const randomButton = document.querySelector("#random-color");
+const lightDarkButton = document.querySelector("#light-dark")
+const lightenText = document.querySelector("#lighten")
+const darkenText = document.querySelector("#darken")
+const clearButton = document.querySelector("#clear");
+const gridSizeSelector = document.querySelector("#grid-size");
+const gridSizeLabel = document.querySelector("#slider-label");
 
 let random = false;
 let color = colorPicker.value;
+let lightDark = 0
 
 colorPicker.addEventListener("change", (event) => {
   color = event.target.value;
@@ -23,20 +27,15 @@ solidButton.addEventListener("click", () => {
   color = colorPicker.value;
 });
 randomButton.addEventListener("click", () => (random = true));
+lightDarkButton.addEventListener("click", lightDarkToggle)
 clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
 gridSizeSelector.addEventListener("input", gridSizeLabelChange);
 
 for (let button of [...buttons]) {
   if (button.id === "grid-slider") continue;
-  button.addEventListener("mousedown", (e) => {
-    e.target.classList.remove("button");
-    e.target.classList.add("button-click");
-  });
-  button.addEventListener("mouseup", (e) => {
-    e.target.classList.remove("button-click");
-    e.target.classList.add("button");
-  });
+  button.addEventListener("mousedown", buttonClick);
+  button.addEventListener("mouseup", buttonUnclick);
 }
 
 function createDiv() {
@@ -72,11 +71,47 @@ function onMouseOver(event) {
   event.target.style.backgroundColor = color;
 }
 
+function buttonClick(event) {
+    if (event.target.className === "") {
+      // swap target on .button, not the spans on lighten/darken
+      event.target.parentNode.classList.remove("button");
+      event.target.parentNode.classList.add("button-click");
+    } else {
+    event.target.classList.remove("button");
+    event.target.classList.add("button-click");
+    }
+  }
+
+function buttonUnclick(event) {
+    if (event.target.className === "" ||
+        event.target.nodeName === "SPAN") {
+      // swap target on .button, not the spans on lighten/darken
+      event.target.parentNode.classList.remove("button-click");
+      event.target.parentNode.classList.add("button");
+    } else {
+    event.target.classList.remove("button-click");
+    event.target.classList.add("button");
+    }
+  }
+
 function clearGrid() {
   for (row of [...sketch.childNodes]) {
     for (square of [...row.childNodes]) {
       square.style.backgroundColor = "white";
     }
+  }
+}
+
+function lightDarkToggle(event) {
+  // Toggle the button indicators on lightDark
+  lightDark += 1;
+  if (lightDark % 3 === 1) {
+    lightenText.classList.add("light-dark");
+  } else if (lightDark % 3 === 2) {
+    lightenText.classList.remove("light-dark")
+    darkenText.classList.add("light-dark");
+  } else {
+    darkenText.classList.remove("light-dark")
   }
 }
 

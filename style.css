@@ -96,6 +96,13 @@ main {
   background-color: #f88;
 }
 
+.light-dark {
+  /* for the lighten/darken mode select indicator */
+  background-color: #f88;
+  /* border: 2px solid #f77; */
+  border-radius: 5%;
+}
+
 #grid-slider {
   display: flex;
   flex-direction: column;
