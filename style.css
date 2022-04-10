@@ -82,6 +82,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1vh;
+  border-radius: 3%;
 }
 
 #color-div input {
