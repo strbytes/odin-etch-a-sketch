@@ -130,14 +130,14 @@ function colorButtonToggle() {
   // Check the state of random and lightDark to decide which button to
   // highlight
   if (lightDark) {
-    solidButton.childNodes[0].classList.remove("option-select");
-    randomButton.childNodes[0].classList.remove("option-select");
+    solidButton.children[0].classList.remove("option-select");
+    randomButton.children[0].classList.remove("option-select");
   } else if (random) {
-    solidButton.childNodes[0].classList.remove("option-select");
-    randomButton.childNodes[0].classList.add("option-select");
+    solidButton.children[0].classList.remove("option-select");
+    randomButton.children[0].classList.add("option-select");
   } else {
-    solidButton.childNodes[0].classList.add("option-select");
-    randomButton.childNodes[0].classList.remove("option-select");
+    solidButton.children[0].classList.add("option-select");
+    randomButton.children[0].classList.remove("option-select");
   }
 }
 
