@@ -39,12 +39,27 @@ main {
   border-radius: 1%;
 }
 
+/* Container for the controls */
 #control-div {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Container for the sketch grid */
+#container {
+  flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vh 2vw;
+}
+
+/* Empty divs on sides of main section to aid spacing */
+.main-flex {
+  flex: 1;
 }
 
 /* Two divs for draw settings */
@@ -113,15 +128,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-/* Container for the sketch grid */
-#container {
-  flex: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2vh 2vw;
 }
 
 /* The sketch grid itself */
