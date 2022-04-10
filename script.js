@@ -21,11 +21,6 @@ solidButton.addEventListener("click", () => {
   random = false;
   color = colorPicker.value;
 });
-
-solidButton.addEventListener("click", () => {
-  random = false;
-  color = colorPicker.value;
-});
 randomButton.addEventListener("click", () => (random = true));
 lightDarkButton.addEventListener("click", lightDarkToggle);
 clearButton.addEventListener("click", clearGrid);
