@@ -118,7 +118,7 @@ main {
 }
 
 /* Toggled on and off when lighten or darken mode is turned on */
-.light-dark {
+.option-select {
   background-color: #f77;
   padding: 2px;
   border-radius: 5%;

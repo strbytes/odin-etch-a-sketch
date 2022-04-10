@@ -3,7 +3,7 @@ const colorPicker = document.querySelector("#color-picker");
 const buttons = document.querySelectorAll(".button");
 const solidButton = document.querySelector("#solid-color");
 const randomButton = document.querySelector("#random-color");
-const lightDarkButton = document.querySelector("#light-dark");
+const lightDarkButton = document.querySelector("#light-dark-button");
 const lightenText = document.querySelector("#lighten");
 const darkenText = document.querySelector("#darken");
 const clearButton = document.querySelector("#clear");
@@ -22,6 +22,7 @@ colorPicker.addEventListener("change", (event) => {
   random = false;
   lightDarkForceOff = true;
   lightDarkToggle();
+  colorButtonToggle();
 });
 solidButton.addEventListener("click", () => {
   // Use the color from the picker to set the grid draw color
@@ -30,6 +31,7 @@ solidButton.addEventListener("click", () => {
   color = colorPicker.value;
   lightDarkForceOff = true;
   lightDarkToggle();
+  colorButtonToggle();
 });
 randomButton.addEventListener("click", () => {
   // Use a random color for every square in the grid when drawing
@@ -37,6 +39,7 @@ randomButton.addEventListener("click", () => {
   random = true;
   lightDarkForceOff = true;
   lightDarkToggle();
+  colorButtonToggle();
 });
 lightDarkButton.addEventListener("click", lightDarkToggle);
 clearButton.addEventListener("click", clearGrid);
@@ -123,16 +126,19 @@ function buttonUnclick(event) {
   }
 }
 
-function clearGrid() {
-  for (row of [...sketch.childNodes]) {
-    for (square of [...row.childNodes]) {
-      square.style.backgroundColor = "white";
-    }
+function colorButtonToggle() {
+  // Check the state of random and lightDark to decide which button to
+  // highlight
+  if (lightDark) {
+    solidButton.childNodes[0].classList.remove("option-select");
+    randomButton.childNodes[0].classList.remove("option-select");
+  } else if (random) {
+    solidButton.childNodes[0].classList.remove("option-select");
+    randomButton.childNodes[0].classList.add("option-select");
+  } else {
+    solidButton.childNodes[0].classList.add("option-select");
+    randomButton.childNodes[0].classList.remove("option-select");
   }
-  // Turn off lighten/darken feature when grid is cleared (does nothing on
-  // empty grids)
-  lightDarkForceOff = true;
-  lightDarkToggle();
 }
 
 function lightDarkToggle() {
@@ -141,10 +147,11 @@ function lightDarkToggle() {
     // Couldn't pass a bool directly to the function simply, so used a global
     // var as a flag that tells a call to this function to remove the effects
     // and button styles
-    lightenText.classList.remove("light-dark");
-    darkenText.classList.remove("light-dark");
+    lightenText.classList.remove("option-select");
+    darkenText.classList.remove("option-select");
     lightDark = 0;
     lightDarkForceOff = false;
+    colorButtonToggle();
     return;
   }
   // lightDark cycles through states 0, 1, 2 when this function is called,
@@ -152,14 +159,15 @@ function lightDarkToggle() {
   // active. 0 = off, 1 = lighten, 2 = darken
   lightDark += 1;
   if (lightDark % 3 === 1) {
-    lightenText.classList.add("light-dark");
+    lightenText.classList.add("option-select");
   } else if (lightDark % 3 === 2) {
-    lightenText.classList.remove("light-dark");
-    darkenText.classList.add("light-dark");
+    lightenText.classList.remove("option-select");
+    darkenText.classList.add("option-select");
   } else {
-    darkenText.classList.remove("light-dark");
+    darkenText.classList.remove("option-select");
     lightDark = 0;
   }
+  colorButtonToggle();
 }
 
 function parseColor(input) {
@@ -181,18 +189,36 @@ function lightDarkColor(divColor, amount) {
   return newColor;
 }
 
+function clearGrid() {
+  for (row of [...sketch.childNodes]) {
+    for (square of [...row.childNodes]) {
+      square.style.backgroundColor = "white";
+    }
+  }
+  // Turn off lighten/darken feature when grid is cleared (does nothing on
+  // empty grids)
+  lightDarkForceOff = true;
+  lightDarkToggle();
+  colorButtonToggle();
+}
+
 function gridSizeChange(event) {
+  // Change size of grid (resets with all blank squares)
   size = event.target.value;
   createGrid(size);
   // Turn off lighten/darken feature when grid is changed (does nothing on
   // empty grids)
   lightDarkForceOff = true;
   lightDarkToggle();
+  colorButtonToggle();
 }
 
 function gridSizeLabelChange(event) {
+  // Adjust label of grid size selector
   size = event.target.value;
   gridSizeLabel.textContent = `Grid size: ${size} x ${size}`;
 }
 
+// Initialize page
 createGrid(gridSizeSelector.value);
+colorButtonToggle();
