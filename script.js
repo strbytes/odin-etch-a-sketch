@@ -64,11 +64,23 @@ function createGrid(len) {
 }
 
 function onMouseOver(event) {
-  // color = "black";
-  if (random) {
-    color = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
+  // Change color of divs in grid as the mouse passes over them
+  // The color change depends on global vars color and lightDark
+  if (lightDark) {
+    if (!event.target.style.backgroundColor) {
+      return
+    }
+    divColor = parseColor(event.target.style.backgroundColor);
+    amount = lightDark === 1 ? 25 : -25;
+    newColor = lightDarkColor(divColor, amount);
+    event.target.style.backgroundColor = newColor;
+  } else {
+    if (random) {
+      // Choose a random color each time if random is true
+      color = "#" + ((Math.random() * 0xffffff) << 0).toString(16);
+    }
+    event.target.style.backgroundColor = color;
   }
-  event.target.style.backgroundColor = color;
 }
 
 function buttonClick(event) {
@@ -102,17 +114,38 @@ function clearGrid() {
   }
 }
 
-function lightDarkToggle(event) {
+function lightDarkToggle() {
   // Toggle the button indicators on lightDark
   lightDark += 1;
   if (lightDark % 3 === 1) {
     lightenText.classList.add("light-dark");
   } else if (lightDark % 3 === 2) {
-    lightenText.classList.remove("light-dark")
+    lightenText.classList.remove("light-dark");
     darkenText.classList.add("light-dark");
   } else {
-    darkenText.classList.remove("light-dark")
+    darkenText.classList.remove("light-dark");
+    lightDark = 0;
   }
+}
+
+function parseColor(input) {
+  // extract color values from RGB
+  return input.split("(")[1].split(")")[0].split(",");
+}
+
+function lightDarkColor(divColor, amount) {
+  // Apply color changes
+  newColor = "rgb("
+  for (rgb of divColor) {
+    rgb = parseInt(rgb);
+    rgb += amount;
+    if (rgb < 0) rgb = 0;
+    if (rgb > 255) rgb = 255;
+    newColor += rgb + ", ";
+  }
+  newColor = newColor.slice(0, -2) + ")";
+  console.log(newColor);
+  return newColor
 }
 
 function gridSizeChange(event) {

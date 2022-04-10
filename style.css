@@ -98,8 +98,8 @@ main {
 
 .light-dark {
   /* for the lighten/darken mode select indicator */
-  background-color: #f88;
-  /* border: 2px solid #f77; */
+  background-color: #f77;
+  padding: 2px;
   border-radius: 5%;
 }
 
