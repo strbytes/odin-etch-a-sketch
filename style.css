@@ -2,9 +2,9 @@ html {
   background-color: #fee;
   font-family: Arial, sans-serif;
   color: #033;
-  /* color: #001818; */
 }
 
+/* Set the page to fill the window size and divide into flex boxes */
 body {
   display: flex;
   flex-direction: column;
@@ -29,6 +29,7 @@ header h1 {
   border-radius: 5%;
 }
 
+/* Main section contains the sketcher and tools */
 main {
   background-color: #fcc;
   flex: 1;
@@ -46,6 +47,7 @@ main {
   align-items: center;
 }
 
+/* Two divs for draw settings */
 #controls,
 #color-div {
   flex: 1;
@@ -58,6 +60,7 @@ main {
   font-weight: bold;
 }
 
+/* Empty divs on top and bottom to aid spacing the controls */
 .control-flex {
   flex: 1;
   min-height: 1px;
@@ -78,6 +81,7 @@ main {
   margin-top: 1vh;
 }
 
+/* Maintain consistent button size and style in button click events */
 .button,
 .button:hover,
 .button-click {
@@ -93,12 +97,13 @@ main {
   background-color: #f99;
 }
 
+/* Toggled on and off (replacing .button) during click events */
 .button-click {
   background-color: #f88;
 }
 
+/* Toggled on and off when lighten or darken mode is turned on */
 .light-dark {
-  /* for the lighten/darken mode select indicator */
   background-color: #f77;
   padding: 2px;
   border-radius: 5%;
@@ -110,6 +115,7 @@ main {
   align-items: flex-start;
 }
 
+/* Container for the sketch grid */
 #container {
   flex: 5;
   display: flex;
@@ -118,6 +124,8 @@ main {
   padding: 2vh 2vw;
 }
 
+/* The sketch grid itself */
+/* Anchor for the grid object created by createGrid */
 #sketch {
   aspect-ratio: 1;
   background-color: #fbb;
@@ -131,6 +139,7 @@ main {
   margin: 1vh;
 }
 
+/* Aligns row objects created by createRow */
 .row {
   flex: 1 1 0;
   min-height: 1px;
@@ -140,6 +149,7 @@ main {
   align-items: center;
 }
 
+/* Aligns square objects created by createDiv */
 .square {
   flex: 1 1 0;
   min-height: 1px;
