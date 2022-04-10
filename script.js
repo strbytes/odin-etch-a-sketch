@@ -129,6 +129,10 @@ function clearGrid() {
       square.style.backgroundColor = "white";
     }
   }
+  // Turn off lighten/darken feature when grid is cleared (does nothing on
+  // empty grids)
+  lightDarkForceOff = true;
+  lightDarkToggle();
 }
 
 function lightDarkToggle() {
@@ -180,6 +184,10 @@ function lightDarkColor(divColor, amount) {
 function gridSizeChange(event) {
   size = event.target.value;
   createGrid(size);
+  // Turn off lighten/darken feature when grid is changed (does nothing on
+  // empty grids)
+  lightDarkForceOff = true;
+  lightDarkToggle();
 }
 
 function gridSizeLabelChange(event) {
