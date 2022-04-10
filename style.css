@@ -126,7 +126,6 @@ main {
   align-items: flex-start;
 }
 
-/* The sketch grid itself */
 /* Anchor for the grid object created by createGrid */
 #sketch {
   aspect-ratio: 1;
