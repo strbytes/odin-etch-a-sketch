@@ -3,16 +3,16 @@ const colorPicker = document.querySelector("#color-picker");
 const buttons = document.querySelectorAll(".button");
 const solidButton = document.querySelector("#solid-color");
 const randomButton = document.querySelector("#random-color");
-const lightDarkButton = document.querySelector("#light-dark")
-const lightenText = document.querySelector("#lighten")
-const darkenText = document.querySelector("#darken")
+const lightDarkButton = document.querySelector("#light-dark");
+const lightenText = document.querySelector("#lighten");
+const darkenText = document.querySelector("#darken");
 const clearButton = document.querySelector("#clear");
 const gridSizeSelector = document.querySelector("#grid-size");
 const gridSizeLabel = document.querySelector("#slider-label");
 
 let random = false;
 let color = colorPicker.value;
-let lightDark = 0
+let lightDark = 0;
 
 colorPicker.addEventListener("change", (event) => {
   color = event.target.value;
@@ -27,7 +27,7 @@ solidButton.addEventListener("click", () => {
   color = colorPicker.value;
 });
 randomButton.addEventListener("click", () => (random = true));
-lightDarkButton.addEventListener("click", lightDarkToggle)
+lightDarkButton.addEventListener("click", lightDarkToggle);
 clearButton.addEventListener("click", clearGrid);
 gridSizeSelector.addEventListener("change", gridSizeChange);
 gridSizeSelector.addEventListener("input", gridSizeLabelChange);
@@ -68,7 +68,7 @@ function onMouseOver(event) {
   // The color change depends on global vars color and lightDark
   if (lightDark) {
     if (!event.target.style.backgroundColor) {
-      return
+      return;
     }
     divColor = parseColor(event.target.style.backgroundColor);
     amount = lightDark === 1 ? 25 : -25;
@@ -84,27 +84,26 @@ function onMouseOver(event) {
 }
 
 function buttonClick(event) {
-    if (event.target.className === "") {
-      // swap target on .button, not the spans on lighten/darken
-      event.target.parentNode.classList.remove("button");
-      event.target.parentNode.classList.add("button-click");
-    } else {
+  if (event.target.className === "") {
+    // swap target on .button, not the spans on lighten/darken
+    event.target.parentNode.classList.remove("button");
+    event.target.parentNode.classList.add("button-click");
+  } else {
     event.target.classList.remove("button");
     event.target.classList.add("button-click");
-    }
   }
+}
 
 function buttonUnclick(event) {
-    if (event.target.className === "" ||
-        event.target.nodeName === "SPAN") {
-      // swap target on .button, not the spans on lighten/darken
-      event.target.parentNode.classList.remove("button-click");
-      event.target.parentNode.classList.add("button");
-    } else {
+  if (event.target.className === "" || event.target.nodeName === "SPAN") {
+    // swap target on .button, not the spans on lighten/darken
+    event.target.parentNode.classList.remove("button-click");
+    event.target.parentNode.classList.add("button");
+  } else {
     event.target.classList.remove("button-click");
     event.target.classList.add("button");
-    }
   }
+}
 
 function clearGrid() {
   for (row of [...sketch.childNodes]) {
@@ -135,7 +134,7 @@ function parseColor(input) {
 
 function lightDarkColor(divColor, amount) {
   // Apply color changes
-  newColor = "rgb("
+  newColor = "rgb(";
   for (rgb of divColor) {
     rgb = parseInt(rgb);
     rgb += amount;
@@ -144,8 +143,7 @@ function lightDarkColor(divColor, amount) {
     newColor += rgb + ", ";
   }
   newColor = newColor.slice(0, -2) + ")";
-  console.log(newColor);
-  return newColor
+  return newColor;
 }
 
 function gridSizeChange(event) {
