@@ -105,7 +105,7 @@ function onMouseOver(event) {
 
 function buttonClick(event) {
   // Responsive style change for buttons
-  if (event.target.className === "") {
+  if (event.target.nodeName === "SPAN") {
     // swap target on .button, not the spans on lighten/darken
     event.target.parentNode.classList.remove("button");
     event.target.parentNode.classList.add("button-click");
@@ -116,7 +116,7 @@ function buttonClick(event) {
 }
 
 function buttonUnclick(event) {
-  if (event.target.className === "" || event.target.nodeName === "SPAN") {
+  if (event.target.nodeName === "SPAN") {
     // swap target on .button, not the spans on lighten/darken
     event.target.parentNode.classList.remove("button-click");
     event.target.parentNode.classList.add("button");
